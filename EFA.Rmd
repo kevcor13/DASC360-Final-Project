@@ -30,7 +30,9 @@ eigen(df_sample)
 
 
 ```{r}
-x = 4
+cor1 = cor(df_sample)
+
+eigen(cor1)
 ```
 
 
