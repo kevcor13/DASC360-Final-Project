@@ -30,7 +30,7 @@ eigen(df_sample)
 
 
 ```{r}
-x = 2
+x = 3
 ```
 
 
