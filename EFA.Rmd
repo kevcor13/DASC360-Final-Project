@@ -1,0 +1,31 @@
+---
+title: "EDA"
+output: html_document
+date: "2025-11-04"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+dataset <- read.csv("personality_datasert.csv")
+
+# 
+
+dataset$Personality <- as.numeric(factor(dataset$Personality, level = c("Introvert", "Extrovert"))) - 1
+
+dataset$Drained_after_socializing <- as.numeric(factor(dataset$Drained_after_socializing, level = c("No", "Yes"))) - 1
+
+dataset$Stage_fear <- as.numeric(factor(dataset$Stage_fear, level = c("No", "Yes"))) - 1
+
+
+dataset
+set.seed(123)  # optional for reproducibility
+df_sample <- dataset[sample(nrow(dataset), 200), ]
+```
+
+
+```{r}
+eigen(df_sample)
+```
+
+
