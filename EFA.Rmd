@@ -35,4 +35,43 @@ cor1 = cor(df_sample)
 eigen(cor1)
 ```
 
+```{r}
+
+summary (df_sample)
+response
+#personality
+#Friend circle size 
+# going outside
+# stage fear
+
+predictive
+#time spent alone
+# drained after socializing
+#post frequency
+```
+
+```{r}
+response <- df_sample$Personality
+
+# Predictor variables
+predictive <- df_sample[, c("Time_spent_Alone",
+                            "Drained_after_socializing",
+                            "Post_frequency",
+                            "Friends_circle_size",
+                            "Going_outside"
+                            )]
+
+
+response <- df_sample[, c("Personality", "Stage_fear")]
+
+res <- cor(response)
+pre <- cor(predictive)
+
+eigen(res)
+eigen(pre)
+
+
+#predective "time spent alone" due to kaisers rule 
+#response we keep personality due to kaisers
+```
 
