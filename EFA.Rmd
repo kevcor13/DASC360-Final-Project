@@ -93,23 +93,52 @@ eigen(pre)
 
 
 
-After looking at the eigen values, we can use Kaisers criterion, we can see that for both the 
+After looking at the eigen values, we can use Kaisers criterion, we can see that for both the the Responsive and the Predictive variables, have an intrinsic dimensional of 1. Therefore we ran the PCA() function to find the optimally orthogonality loading matrix, for both the Responsive variables and the Predictive variables.
 
 
 ```{r}
 
 res_opt <- pca(r = res, nfactors = 1, rotate = "varimax")$loadings[]
 res_opt
-res_opt <- pca(r = res, nfactors = 2, rotate = "varimax")$loadings[]
-res_opt
-
 
 pre_opt <- pca(r = pre, nfactors = 1, rotate = "varimax")$loadings[]
 pre_opt
+
+
+```
+Since we are only using one factor, it seems to be a bit unnecessary to do the roational matrix on either of them. Therefore, we look at al alternative, what would happen if we used 2 factors instead of just 1. 
+```{r}
+res_opt <- pca(r = res, nfactors = 2, rotate = "varimax")$loadings[]
+res_opt
+
 pre_opt <- pca(r = pre, nfactors = 2, rotate = "varimax")$loadings[]
 pre_opt
 
 ```
+By using two factors, we can see that for the response variables, we have 2 complex dimensions (following the 0.30 threshold): Stage_fear & Social_event_attendance. For Predictive variables, we have 2 complex dimensions: Time_spent_alone & Drained_after_socializing. 
+
+Knowing this information, we can also do an obliquely rotated loading matrix to see if we can get rid of those complex dimensions. 
+```{r}
+res_opt <- pca(r = res, nfactors = 2, rotate = "oblimin")$loadings[]
+res_opt
+
+pre_opt <- pca(r = pre, nfactors = 2, rotate = "oblimin")$loadings[]
+pre_opt
+
+```
+
+By doing this Obliquely rotated matrix, we got rid of a lot of complex dimensions. For response variables, we completely got rid of the complex dimensions. For the predictive variables, we are left with 1 complex dimension: Time_spend_alone. 
+
+Now,  we understand that it is not necessary to use 2 factors, since the results from using 1 factor tells us that all the variables are correlated with each other. However, to understand if the oblique roation using 2 factors was necessary we need to get the full summary. 
+```{r}
+pre_opt <- pca(r = pre, nfactors = 2, rotate = "oblimin")
+pre_opt
+
+pre_opt <- pca(r = res, nfactors = 2, rotate = "oblimin")
+pre_opt
+
+```
+Looking at the correlation component, we can see that it is far beyond the threshold of 0.30, sitting at 0.76. which means that a Oblique rotation was indeed necessary in this analysis. 
 
 ```{r}
 res_obl <- pca(r = res, nfactors = 1, rotate = "oblimin")$loadings[]
