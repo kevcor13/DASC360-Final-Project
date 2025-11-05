@@ -5,6 +5,13 @@ date: "2025-11-04"
 ---
 
 ```{r setup, include=FALSE}
+
+library(rmarkdown); library(knitr); library(moments); 
+library(scatterplot3d); library(corrplot); library(pso)
+library(psych); library(GPArotation); library(lavaan)
+
+
+
 knitr::opts_chunk$set(echo = TRUE)
 
 dataset <- read.csv("personality_datasert.csv")
@@ -25,7 +32,7 @@ df_sample <- dataset[sample(nrow(dataset), 200), ]
 
 
 ```{r}
-eigen(df_sample)
+
 ```
 
 
@@ -38,17 +45,19 @@ eigen(cor1)
 ```{r}
 
 summary (df_sample)
-response
+#response
 #personality
 #Friend circle size 
 # going outside
 # stage fear
 
-predictive
+#predictive
 #time spent alone
 # drained after socializing
 #post frequency
 ```
+
+Hello, this is some text describung the next chunk of code *this* is bolded and now this **is italicized**
 
 ```{r}
 response <- df_sample$Personality
@@ -67,11 +76,39 @@ response <- df_sample[, c("Personality", "Stage_fear")]
 res <- cor(response)
 pre <- cor(predictive)
 
+corrplot(res)
+corrplot(pre)
 eigen(res)
 eigen(pre)
 
 
 #predective "time spent alone" due to kaisers rule 
 #response we keep personality due to kaisers
+# use a heat map with the coorepation matrix
 ```
+```{r}
+
+res_opt <- pca(r = res, nfactors = 1, rotate = "varimax")$loadings[]
+res_opt
+pre_opt <- pca(r = pre, nfactors = 1, rotate = "varimax")$loadings[]
+pre_opt
+
+```
+
+```{r}
+res_obl <- pca(r = res, nfactors = 1, rotate = "oblimin")$loadings[]
+res_obl
+pre_olb <- pca(r = pre, nfactors = 1, rotate = "oblimin")$loadings[]
+pre_olb
+
+```
+
+```{r}
+res_opt <- pca(r = res, nfactors = 1, rotate = "oblimin")
+res_opt
+pre_opt <- pca(r = pre, nfactors = 1, rotate = "varimax")
+pre_opt
+```
+
+
 
