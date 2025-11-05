@@ -4,6 +4,9 @@ output: html_document
 date: "2025-11-04"
 ---
 
+
+
+Javier, you might want to write some sentences about how you did this part of the assignment. 
 ```{r setup, include=FALSE}
 
 library(rmarkdown); library(knitr); library(moments); 
@@ -31,9 +34,6 @@ df_sample <- dataset[sample(nrow(dataset), 200), ]
 ```
 
 
-```{r}
-
-```
 
 
 ```{r}
@@ -44,7 +44,7 @@ eigen(cor1)
 
 ```{r}
 
-summary (df_sample)
+#summary (df_sample)
 #response
 #personality
 #Friend circle size 
@@ -57,7 +57,11 @@ summary (df_sample)
 #post frequency
 ```
 
-Hello, this is some text describung the next chunk of code *this* is bolded and now this **is italicized**
+# title
+## subtitle
+### section
+
+I think ehab did this part so write a little summary here about how you wrote this and why you did it. 
 
 ```{r}
 response <- df_sample$Personality
@@ -71,7 +75,7 @@ predictive <- df_sample[, c("Time_spent_Alone",
                             )]
 
 
-response <- df_sample[, c("Personality", "Stage_fear")]
+response <- df_sample[, c("Personality", "Stage_fear", "Social_event_attendance")]
 
 res <- cor(response)
 pre <- cor(predictive)
@@ -86,11 +90,23 @@ eigen(pre)
 #response we keep personality due to kaisers
 # use a heat map with the coorepation matrix
 ```
+
+
+
+After looking at the eigen values, we can use Kaisers criterion, we can see that for both the 
+
+
 ```{r}
 
 res_opt <- pca(r = res, nfactors = 1, rotate = "varimax")$loadings[]
 res_opt
+res_opt <- pca(r = res, nfactors = 2, rotate = "varimax")$loadings[]
+res_opt
+
+
 pre_opt <- pca(r = pre, nfactors = 1, rotate = "varimax")$loadings[]
+pre_opt
+pre_opt <- pca(r = pre, nfactors = 2, rotate = "varimax")$loadings[]
 pre_opt
 
 ```
@@ -98,8 +114,15 @@ pre_opt
 ```{r}
 res_obl <- pca(r = res, nfactors = 1, rotate = "oblimin")$loadings[]
 res_obl
+res_obl <- pca(r = res, nfactors = 2, rotate = "oblimin")$loadings[]
+res_obl
+
+
 pre_olb <- pca(r = pre, nfactors = 1, rotate = "oblimin")$loadings[]
 pre_olb
+pre_olb <- pca(r = pre, nfactors = 2, rotate = "oblimin")$loadings[]
+pre_olb
+
 
 ```
 
@@ -107,6 +130,11 @@ pre_olb
 res_opt <- pca(r = res, nfactors = 1, rotate = "oblimin")
 res_opt
 pre_opt <- pca(r = pre, nfactors = 1, rotate = "varimax")
+pre_opt
+
+
+
+pre_opt <- pca(r = pre, nfactors = 2, rotate = "oblimin")
 pre_opt
 ```
 
