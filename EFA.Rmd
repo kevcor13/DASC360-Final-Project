@@ -91,6 +91,9 @@ pre_opt
 corrplot(res_opt)
 corrplot(pre_opt)
 ```
+
+
+
 By using two factors, we can see that for the response variables, we have 2 complex dimensions (following the 0.30 threshold): Stage_fear & Social_event_attendance. For Predictive variables, we have 2 complex dimensions: Time_spent_alone & Drained_after_socializing. 
 
 Knowing this information, we can also do an obliquely rotated loading matrix to see if we can get rid of those complex dimensions. 
