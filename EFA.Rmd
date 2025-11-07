@@ -4,7 +4,7 @@ output: html_document
 date: "2025-11-04"
 ---
 
-
+Right off the bat, we found that this data set included binary variables that needed to be converted into numbers in stead of words. Therefore that is the first step, was to convert these values. Next we randomized the dataset so that it only has the required 200 cases. 
 ```{r setup, include=FALSE}
 
 library(rmarkdown); library(knitr); library(moments); 
@@ -31,11 +31,8 @@ set.seed(123)  # optional for reproducibility
 df_sample <- dataset[sample(nrow(dataset), 200), ]
 ```
 
-# title
-## subtitle
-### section
 
-I think ehab did this part so write a little summary here about how you wrote this and why you did it. 
+Next, since the criteria was to do an analysis separate for the predictive variables and the response variables, we separated our dataset into two tables, one for the response variables and one for the predictive. We then found the correlation of each table so that we can use for further analysis. 
 
 ```{r}
 response <- df_sample$Personality
