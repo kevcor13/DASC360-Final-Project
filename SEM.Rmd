@@ -5,16 +5,16 @@ date: "2025-12-04"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+library(rmarkdown); library(knitr); library(moments); 
+library(scatterplot3d); library(corrplot); library(pso)
+library(psych); library(GPArotation); library(lavaan)
+
+
+
 ```
 
 
-```{r cars}
-summary(cars)
+```{r}
+
 ```
-
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
