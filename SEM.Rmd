@@ -50,6 +50,6 @@ MOD <- sem(model = EQN, sample.cov = SIG, sample.nobs = 200)
 MOD
 
 
-
+summary(MOD, standardized = TRUE, fit.measures = TRUE)
 
 ```
