@@ -34,5 +34,64 @@ set.seed(123)  # optional for reproducibility
 df_sample <- dataset[sample(nrow(dataset), 200), ]
 
 
+model <- '
+
+  #######################################
+  # Measurement Model (Latent Factors)
+  #######################################
+
+  # Activities latent factor
+  Activities =~ 
+       Time_spent_alone +
+       Drained_after_socializing +
+       Post_frequency +
+       Friends_circle_size +
+       Going_outside
+
+  # Personal latent factor
+  Personal =~ 
+       Personality +
+       Stage_fear +
+       Social_event_attendance
+
+
+  #######################################
+  # Structural Paths (Regression Lines)
+  #######################################
+
+  # Activities predicts Personal
+  Personal ~ Activities
+
+  # Activities predicts Personality and Stage_fear directly
+  Personality ~ Activities
+  Stage_fear ~ Activities
+
+  # Personal predicts Social_event_attendance (as drawn)
+  Social_event_attendance ~ Personal
+
+
+  #######################################
+  # Residual Variances (Errors)
+  #######################################
+
+  Time_spent_alone ~~ Time_spent_alone        # E1
+  Drained_after_socializing ~~ Drained_after_socializing   # E2
+  Post_frequency ~~ Post_frequency            # E3
+  Friends_circle_size ~~ Friends_circle_size  # E4
+  Going_outside ~~ Going_outside              # E5
+
+  Personality ~~ Personality                  # E6
+  Stage_fear ~~ Stage_fear                    # E7
+  Social_event_attendance ~~ Social_event_attendance    # E8
+
+
+  #######################################
+  # Latent Variances
+  #######################################
+
+  Activities ~~ Activities
+  Personal ~~ Personal
+
+'
 
 ```
